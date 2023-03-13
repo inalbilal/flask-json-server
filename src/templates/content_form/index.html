@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Successfully
+                                Created</h3>
+                            <div class="mt-2">
+                                URL: <p class="text-sm text-gray-500" id="fullURL">{{ message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button type="button" onclick="closeModal()"
+                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">
+                        Close
+                    </button>
+                    <button type="button" onclick="copyText()"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+                        Copy URL
+                    </button>
+                </div>
+                <script>
+                        function copyText() {
+                          var copyText = document.getElementById("fullURL").innerHTML;
+
+                          navigator.clipboard.writeText(copyText);
+
+                          alert("Copied the text: " + copyText);
+                        }
+
+                        function closeModal()
+                        {
+                          const modal = document.querySelector('.relative');
+                          modal.style.display = "none";
+                        }
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+<div class="min-h-full">
+    <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="https://bilalinal.com.tr/"
+                               class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                               aria-current="page"
+                               target="_blank"
+                            >Home</a>
+
+                            <a href="https://www.instagram.com/bilalinals/"
+                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                               target="_blank"
+                            >Instagram</a>
+
+                            <a href="https://www.linkedin.com/in/inalbilal/"
+                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                               target="_blank"
+                            >LinkedIn</a>
+
+                            <a href="https://github.com/inalbilal?tab=repositories"
+                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                               target="_blank"
+                            >Projects</a>
+                        </div>
+                    </div>
+                </div>
+                <div class=" md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <div class="relative ml-3">
+                            <div>
+                                <a href="https://github.com/inalbilal" target="_blank">
+                                    <button type="button"
+                                            class="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                        <span class="sr-only"></span>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8 fill-white">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z"></path>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <!-- Your content -->
+        </div>
+    </main>
+</div>
+<div class="overflow-hidden bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div class="isolate bg-white py-24 px-6 sm:py-1 lg:px-8">
+                <div class="lg:max-w-lg">
+                    <h2 class="text-base font-semibold leading-7 text-indigo-600">What is this?</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create a JSON Server
+                        with Flask Framework</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">This application allows users to create a JSON
+                        server via a designated endpoint. This makes it easier to create mock APIs and speed up the
+                        development process.
+                    </p>
+                    <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                        <div class="relative pl-9">
+                            <dt class="inline font-semibold text-gray-900">
+                                <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" viewBox="0 0 30 30"
+                                     fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M24,15v2h-7v7h-2v-7H8v-2h7V8h2v7H24z M24.485,24.485c-4.686,4.686-12.284,4.686-16.971,0  c-4.686-4.686-4.686-12.284,0-16.971c4.687-4.686,12.284-4.686,16.971,0C29.172,12.201,29.172,19.799,24.485,24.485z M23.071,8.929  c-3.842-3.842-10.167-3.975-14.142,0c-3.899,3.899-3.899,10.243,0,14.142c3.975,3.975,10.301,3.841,14.142,0  C26.97,19.172,26.97,12.828,23.071,8.929z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                                Creating
+                            </dt>
+                            <dd class="inline">The user inputs their endpoint, server name, and JSON content, and clicks
+                                the "Let's create" button. The application then displays the full URL of the created
+                                JSON
+                                server to the user.
+                            </dd>
+                        </div>
+                        <div class="relative pl-9">
+                            <dt class="inline font-semibold text-gray-900">
+                                <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" viewBox="0 0 24 24"
+                                     fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M12 6C8.76722 6 5.95965 8.31059 4.2048 11.7955C4.17609 11.8526 4.15483 11.8948 4.1369 11.9316C4.12109 11.964 4.11128 11.9853 4.10486 12C4.11128 12.0147 4.12109 12.036 4.1369 12.0684C4.15483 12.1052 4.17609 12.1474 4.2048 12.2045C5.95965 15.6894 8.76722 18 12 18C15.2328 18 18.0404 15.6894 19.7952 12.2045C19.8239 12.1474 19.8452 12.1052 19.8631 12.0684C19.8789 12.036 19.8888 12.0147 19.8952 12C19.8888 11.9853 19.8789 11.964 19.8631 11.9316C19.8452 11.8948 19.8239 11.8526 19.7952 11.7955C18.0404 8.31059 15.2328 6 12 6ZM2.41849 10.896C4.35818 7.04403 7.7198 4 12 4C16.2802 4 19.6419 7.04403 21.5815 10.896C21.5886 10.91 21.5958 10.9242 21.6032 10.9389C21.6945 11.119 21.8124 11.3515 21.8652 11.6381C21.9071 11.8661 21.9071 12.1339 21.8652 12.3619C21.8124 12.6485 21.6945 12.8811 21.6032 13.0611C21.5958 13.0758 21.5886 13.09 21.5815 13.104C19.6419 16.956 16.2802 20 12 20C7.7198 20 4.35818 16.956 2.41849 13.104C2.41148 13.09 2.40424 13.0758 2.39682 13.0611C2.3055 12.881 2.18759 12.6485 2.13485 12.3619C2.09291 12.1339 2.09291 11.8661 2.13485 11.6381C2.18759 11.3515 2.3055 11.119 2.39682 10.9389C2.40424 10.9242 2.41148 10.91 2.41849 10.896ZM12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10ZM8.00002 12C8.00002 9.79086 9.79088 8 12 8C14.2092 8 16 9.79086 16 12C16 14.2091 14.2092 16 12 16C9.79088 16 8.00002 14.2091 8.00002 12Z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                                Showing
+                            </dt>
+                            <dd class="inline">When the application receives a request to the full URL created by the
+                                user's designated endpoint, it returns the specified data. This allows users to act as
+                                if they are using a real API during testing and development.
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="isolate bg-white py-24 px-6 sm:py-1 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create a JSON Server</h2>
+                    <p class="mt-2 text-lg leading-8 text-gray-600">Let's create a JSON server</p>
+                </div>
+                {% from "content_form/_formhelpers.html" import render_field %}
+                <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
+                        <div>
+                            <label class="block text-sm font-semibold leading-6 text-gray-900">Name</label>
+                            <div class="mt-2.5">
+                                {{ render_field(form.name, id="name", placeholder="My server name", class="block w-full
+                                rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
+                                placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm
+                                sm:leading-6") }}
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                    class="block text-sm font-semibold leading-6 text-gray-900">Endpoint</label>
+                            <div class="mt-2.5">
+                                {{ render_field(form.endpoint, id="endpoint", placeholder="api/v1/my_json",
+                                pattern="^(?!\/)[\w\/]*(?:\/\w+)?(?:\.json)?$",
+                                class="block
+                                w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset
+                                ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                focus:ring-indigo-600 sm:text-sm sm:leading-6") }}
+
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label
+                                    class="block text-sm font-semibold leading-6 text-gray-900">JSON Content</label>
+                            <div class="mt-2.5">
+                                {{ render_field(form.content, id="content", rows="4",
+                                placeholder='{ name":"John", "age":30, "car":null }',
+                                class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1
+                                ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                focus:ring-indigo-600 sm:text-sm sm:leading-6") }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <button type="submit"
+                                class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Let's create
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

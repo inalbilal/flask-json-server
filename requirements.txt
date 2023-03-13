@@ -1,0 +1,6 @@
+Flask==2.2.3
+python-dotenv==1.0.0
+SQLAlchemy==2.0.5.post1
+WTForms==3.0.1
+python-slugify==8.0.1
+PyMySQL[rsa]==1.0.2

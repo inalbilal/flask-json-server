@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      target: builder
+    stop_signal: SIGINT
+    ports:
+      - '8000:8000'
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: json_server
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: json_server
