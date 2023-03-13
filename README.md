@@ -21,3 +21,4 @@ The database used for this project has the following structure:
 ```
 `id`, `endpoint`, `name`, `slug`, `content`, `created_at`, `updated_at`, `is_active` FROM `json_server`
 ```
+![Project Image](https://user-images.githubusercontent.com/105794722/224847806-32208d96-b1da-4351-a4bf-864c2a8bdf4f.png)
